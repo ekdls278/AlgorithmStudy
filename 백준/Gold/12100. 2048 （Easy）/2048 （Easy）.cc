@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<algorithm>
 #include<vector>
+#include<iostream>
 #define MAX 21
 #pragma warning(disable:4996)
 using namespace std;
@@ -9,7 +10,6 @@ int n;
 vector<vector<bool>> visited;
 vector<vector<int>> map;
 int ret = -1;
-
 
 vector<vector<int>> leftMove(vector<vector<int>> vec, vector<vector<bool>> visited)
 {
@@ -147,8 +147,6 @@ vector<vector<int>> topMove(vector<vector<int>> vec, vector<vector<bool>> visite
 
 		}
 	}
-
-
 	return vec;
 }
 
@@ -193,11 +191,8 @@ vector<vector<int>> bottomMove(vector<vector<int>> vec, vector<vector<bool>> vis
 				vec[y-1][x] = vec[i][j];
 				vec[i][j] = 0;
 			}
-
 		}
 	}
-
-
 	return vec;
 }
 
@@ -210,7 +205,6 @@ void findMaxRet(vector<vector<int>> vec)
 			ret = max(ret, vec[i][j]);
 		}
 	}
-
 }
 void dfs(vector<vector<int>> vec, vector<vector<bool>> visited, int cnt)
 {
@@ -221,17 +215,11 @@ void dfs(vector<vector<int>> vec, vector<vector<bool>> visited, int cnt)
 		findMaxRet(vec);
 		return;
 	}
-
 	//상하좌우 DFS
 	dfs(leftMove(vec, visited), visited, cnt+1);
-
 	dfs(rightMove(vec, visited),visited, cnt + 1);
-
 	dfs(topMove(vec, visited),visited, cnt + 1);
-
 	dfs(bottomMove(vec, visited),visited, cnt + 1);
-
-
 }
 
 int main()
@@ -239,7 +227,8 @@ int main()
 #ifdef _DEBUG
 	freopen("C:\\Users\\ekdls\\Desktop\\study\\12100.txt", "r", stdin);
 #endif
-
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 	scanf("%d", &n);
 	map.resize(n + 1, vector<int>(n + 1));
 	vector<vector<bool>> visited(n+1, vector<bool>(n+1, false));
@@ -250,10 +239,7 @@ int main()
 			scanf("%d", &map[i][j]);
 		}
 	}
-
 	dfs(map, visited, 0);
 	printf("%d",ret);
-
-
 	return 0;
 }
