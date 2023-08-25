@@ -34,7 +34,7 @@ void Input()
 	}
 }
 
-int dijk(int s, int x)
+int dijk(int s)
 {
 	priority_queue<edge> pq;
 	for (int i = 1; i <= N; i++)
@@ -63,9 +63,7 @@ int dijk(int s, int x)
 			}
 		}
 	}
-	if (dist[x] != INF)return dist[x];
-	return -1;
-
+	return dist[X];
 }
 
 int main()
@@ -75,10 +73,16 @@ int main()
 #endif
 	Input();
 	int ret = -1;
+	dijk(X);
+	int arr[MAX];
+	for (int i = 1; i <= N; i++)
+	{
+		arr[i] = dist[i];
+	}
 	for (int i = 1; i <= N; i++)
 	{
 		if (i == X)continue;
-		int tmp = dijk(i, X) + dijk(X, i);
+		int tmp = dijk(i) + arr[i];
 		ret = max(ret, tmp);
 	}
 	cout << ret << "\n";
