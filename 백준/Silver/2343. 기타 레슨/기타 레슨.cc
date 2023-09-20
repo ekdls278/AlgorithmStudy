@@ -47,7 +47,7 @@ void BinarySearch()
 		int mid = (l + r) / 2;
 		if (check(mid))
 		{
-			ret = min(ret, mid);
+			ret = mid;
 			r = mid - 1;
 		}
 		else
